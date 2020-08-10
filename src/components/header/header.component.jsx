@@ -33,7 +33,7 @@ const Header = ({ currentUser }) => {
 };
 
 const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+  currentUser: state.user.currentUser //asks value from rootreducer => particularReducer => state
 })
 
 const mapDispatchToProps = {
