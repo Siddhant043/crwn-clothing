@@ -1,6 +1,6 @@
 import React from "react";
 
-import './form-imput.styles.scss';
+import './form-input.styles.scss';
 
 const FormInput = ({ handleChange, label, ...otherProps }) => {
   return (

@@ -17,6 +17,7 @@ export class App extends Component {
   // state = { //we dont need state as we are working with redux
   //   currentUser: null
   // }
+  
   // initialising the varialble
   unsubscribeFromAuth = null;
 
