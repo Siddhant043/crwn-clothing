@@ -20,7 +20,7 @@ const CartDropdown = ({ cartItems }) => { // this is the cartItems array we get 
 }
 
 const mapStatetoProps = state => ({
-    cartItems: selectCartItems(state)
+    cartItems: selectCartItems(state) // using select will make sure the component is not getting rerendered
                 //state.cart.cartItems // this is the cartItems array
 })
 
