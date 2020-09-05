@@ -1,4 +1,5 @@
 import React from "react";
+import { createStructuredSelector } from 'reselect';
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 import { connect } from "react-redux";
 import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
@@ -14,8 +15,8 @@ const CartIcon = ({toggleCartHidden, itemCount}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  itemCount: selectCartItemsCount(state) 
+const mapStateToProps = createStructuredSelector({
+  itemCount: selectCartItemsCount 
   //cartItems.reduce((accumalatedQuantity, cartItem) => accumalatedQuantity + cartItem.quantity, 0) // this is a selector
 }); //but like this the mapStateToProps will we called whenever the state change for anything (eg. user login) and rerender the component so we need to cache the value only only pass it to the component when the particular value changes.
 
