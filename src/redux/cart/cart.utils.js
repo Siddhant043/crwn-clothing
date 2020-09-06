@@ -20,3 +20,19 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
   //if the item if being 1st time added to the cart the we return this
   return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };
+
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
+  const existingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === cartItemToRemove.id
+  );
+
+  if (existingCartItem.quantity === 1) {
+    return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
+  } // if the existing item quantity is 1 then remove it
+
+  return cartItems.map((cartItem) =>
+    cartItem.id === cartItemToRemove.id
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : cartItem
+  ); // if the existing item quantity is more than one the return same cart item with decreased quantity
+};
