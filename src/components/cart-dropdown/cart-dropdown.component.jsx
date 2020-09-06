@@ -1,14 +1,15 @@
 import React from "react";
 import { createStructuredSelector } from "reselect";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
 
 import { connect } from "react-redux";
 import "./cart-dropdown.styles.scss";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
-
-const CartDropdown = ({ cartItems, history }) => {
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
+const CartDropdown = ({ cartItems, history, dispatch }) => {
+  // for using a single dispatchable function connect providess dispatch in the props
   // this is the cartItems array we get from aur state
   return (
     <div className="cart-dropdown">
@@ -21,7 +22,14 @@ const CartDropdown = ({ cartItems, history }) => {
           <span className="empty-message">Your cart is empty</span>
         )}
       </div>
-      <CustomButton onClick={() => history.push('/checkout')}>GO TO CHECKOUT</CustomButton>
+      <CustomButton
+        onClick={() => {
+          history.push("/checkout");
+          dispatch(toggleCartHidden());
+        }}
+      >
+        GO TO CHECKOUT
+      </CustomButton>
     </div>
   );
 };
