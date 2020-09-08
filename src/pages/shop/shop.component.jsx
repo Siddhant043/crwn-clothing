@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import CollectionsOverview from "../../components/collections-overview/collections-overview.component";
-import CategoryPage from "../category/category.component";
+import CollectionPage from '../collection/collection.component';
 
 import "./shop.styles.scss";
 
@@ -12,8 +12,8 @@ export const ShopPage = ({ match }) => {
       <Route exact path={`${match.path}`} component={CollectionsOverview} />
       <Route
         exact
-        path={`${match.path}/:categoryId`}
-        component={CategoryPage}
+        path={`${match.path}/:collectionId`}
+        component={CollectionPage}
       />
     </div>
   ); // this makes it more felxible and reuseable
