@@ -16,12 +16,20 @@ export const selectShopCollections = createSelector(
   (shop) => shop.collections
 );
 
-export const selectCollection = ( // this function eventually takes the state and the param we provide
+export const selectCollectionsForPreview = createSelector(
+  [selectShopCollections],
+  (collections) => Object.keys(collections).map((key) => collections[key]) //Object.key(object) returns the array of the keys then we map over that array and match them in the object to get a particular item
+);
+
+export const selectCollection = (
+  // this function eventually takes the state and the param we provide
   collectionUrlParam // find collection.id matching the url param of our collection id map
 ) =>
-  createSelector([selectShopCollections], (collections) => // we map over the collections array which is given by SelectShopCollection
-    collections[collectionUrlParam] // this is the santax if you want to pick a particular object from an object of objects (data normalization)
+  createSelector(
+    [selectShopCollections],
+    (
+      collections // we map over the collections array which is given by SelectShopCollection
+    ) => collections[collectionUrlParam] // this is the santax if you want to pick a particular object from an object of objects (data normalization)
     // collections.find(
     //   (collection) => collection.id === COLLECTION_ID_MAP[collectionUrlParam]) //eg. hats = 1, it finds the collection with id 1 and returns that
-    
   );
