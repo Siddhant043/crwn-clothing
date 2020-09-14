@@ -4,7 +4,11 @@ import { persistStore } from 'redux-persist'; // allows the browser to cache our
 
 import rootReducer from './root-reducer';
 
-const middlewares = [logger];
+const middlewares = [];
+
+if (process.env.NODE_ENV === 'development'){ // NODE_ENV contains all the running build type
+    middlewares.push(logger);
+}
 
 export const  store = createStore(rootReducer, applyMiddleware(...middlewares));
 
