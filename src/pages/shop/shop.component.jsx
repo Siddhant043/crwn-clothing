@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { fetchCollectionsStartAsync } from "../../redux/shop/shop.actions";
 
 import "./shop.styles.scss";
-import { selectIsCollectionFetching } from "../../redux/shop/shop.selectors";
+import { selectIsCollectionFetching, selectIsCollectionsLoaded } from "../../redux/shop/shop.selectors";
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 const CollectionPageWihtSpinner = WithSpinner(CollectionPage)
@@ -22,15 +22,15 @@ class ShopPage extends React.Component {
   }
 
   render() {
-    const { match, isCollectionFetching } = this.props;
+    const { match, isCollectionFetching, isCollectionsLoaded } = this.props;
     // nestedRouting
     return (
       <div className="shop-page">
-        <Route exact path={`${match.path}`} render={(props) => <CollectionsOverviewWithSpinner isLoading={isCollectionFetching} {...props} />} />
+        <Route exact path={`${match.path}`} render={(props) => <CollectionsOverviewWithSpinner isLoading={!isCollectionsLoaded} {...props} />} />
         <Route
           exact
           path={`${match.path}/:collectionId`}
-          render={(props) => <CollectionPageWihtSpinner isLoading={isCollectionFetching} {...props} />}
+          render={(props) => <CollectionPageWihtSpinner isLoading={!isCollectionsLoaded} {...props} />}
         />
       </div>
     ); // this makes it more felxible and reuseable
@@ -38,7 +38,8 @@ class ShopPage extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  isCollectionFetching: selectIsCollectionFetching
+  isCollectionFetching: selectIsCollectionFetching,
+  isCollectionsLoaded: selectIsCollectionsLoaded
 })
 
 const mapDispatchToProps = (dispatch) => ({
