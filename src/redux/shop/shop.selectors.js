@@ -33,3 +33,9 @@ export const selectCollection = (
     // collections.find(
     //   (collection) => collection.id === COLLECTION_ID_MAP[collectionUrlParam]) //eg. hats = 1, it finds the collection with id 1 and returns that
   );
+
+
+export const selectIsCollectionFetching = createSelector(
+  [selectShop],
+  shop => shop.isFetching
+)
